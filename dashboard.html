@@ -1,0 +1,103 @@
+<document type>
+<html>
+<head>
+</head>
+<body>
+ 
+ <div class="navbar" style="background-color:#232F3E; padding:10px 20px; color:white;">
+   <div class="logo" style="background-color:#FF9900; color:#000; font-weight:bold; display:flex; align-items:center; justify-content:center;">USB</div>
+
+   <ul class="item">
+      <a href="extenial.html"><button style="background-color:#FF9900; color:white;">About us</button></a>
+      <button style="background-color:#FF9900; color:white;">AI(Assistant)</button>
+      <button style="background-color:#FF9900; color:white;">LIBRARY</button>
+      <button style="background-color:#FF9900; color:white;">result</button>
+      <a href="news.html"><button style="background-color:#FF9900; color:white;">news update</button></a>
+      <a href="attdence.html"><button style="background-color:#FF9900; color:white;">Attendance</button></a>
+   </ul>
+
+   <!-- Date & Time -->
+   <div id="datetime" style="font-weight:bold;"></div>
+ </div>
+
+ <!-- Buttons below navbar -->
+ <div style="text-align:center; margin-top:20px; display:flex; justify-content:center; gap:20px;">
+   
+ </div>
+
+ <!-- NG College Description -->
+ <div style="text-align:center; margin-top:30px; max-width:800px; margin-left:auto; margin-right:auto; padding:10px; font-size:16px; line-height:1.6; color:#333;">
+   <h2>About NG College</h2>
+   <p>
+     N.G. Acharya & D.K. Marathe College is a great place to learn and grow. 
+     We help students excel in Arts, Science, and Commerce. 
+     There’s always something happening, from classroom learning to cultural activities and research projects. 
+     Our goal is to make sure every student gains knowledge and enjoys the journey of learning.
+   </p>
+ </div>
+
+ <!-- College Image -->
+ <div style="text-align:center; margin-top:30px;">
+   <img src="ngcollege.jpg" alt="NG College" style="width:80%; max-width:600px; border-radius:10px;">
+ </div>
+
+ <style>
+     body{
+         margin:0;
+         padding:0;
+         font-family: Arial, sans-serif;
+         background-color:#ffffff; /* White background */
+     }
+     .navbar{
+         display:flex;
+         justify-content:space-between;
+         align-items:center;
+     }
+     .item{
+         display:flex;
+         justify-content: space-around;
+         align-items:center;
+         gap:10px;
+         list-style:none;
+     }
+     button{
+         padding:10px;
+         border:none;
+         border-radius:5px;
+         cursor:pointer;
+         transition:0.3s;
+         box-shadow:0 4px 6px rgba(0,0,0,0.3); /* 3D effect */
+     }
+     .down-btn{
+         background-color:#FF9900;
+         color:white;
+         padding:15px 25px;
+         font-size:16px;
+         border-radius:8px;
+         box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+         transition: all 0.3s ease;
+     }
+     .down-btn:hover{
+         transform: translateY(-3px);
+         box-shadow: 0 10px 12px rgba(0,0,0,0.4);
+     }
+     #datetime{
+         font-size:14px;
+         color:white;
+     }
+ </style>
+
+ <script>
+   // Live date and time
+   function updateDateTime(){
+     const now = new Date();
+     const date = now.toLocaleDateString();
+     const time = now.toLocaleTimeString();
+     document.getElementById("datetime").textContent = `${date} | ${time}`;
+   }
+   setInterval(updateDateTime, 1000);
+   updateDateTime();
+ </script>
+
+</body>
+</html>
