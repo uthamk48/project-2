@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NG College Attendance Portal</title>
+  <a href="dashboard.html">
+  <button>home</button>
+  </a>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", Arial, sans-serif;
+      background-color: #ffffff; /* white background */
+    }
+
+    header {
+      background-color: #007BFF; /* blue navbar */
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin: 5px 0 0;
+      color: #e0e0e0;
+      font-size: 14px;
+    }
+
+    .box {
+      background-color: #fff;
+      width: 450px;
+      margin: 60px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .box h2 {
+      color: #007BFF;
+      margin-bottom: 15px;
+    }
+
+    .info {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: center;
+      margin-bottom: 12px;
+      outline: none;
+    }
+
+    button {
+      width: 95%;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #007BFF; /* blue button */
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .success {
+      color: #2E7D32;
+    }
+
+    .error {
+      color: #C62828;
+    }
+
+    .closed {
+      text-align: center;
+      font-size: 22px;
+      color: #C62828;
+      font-weight: bold;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>NG COLLEGE - NALGONDA</h1>
+    <p>Official Student Attendance Portal</p>
+  </header>
+
+  <div class="box" id="attendanceBox">
+    <h2>Enter Hall Ticket</h2>
+    <div class="info" id="dateTime"></div>
+    <div class="info" id="location">📍 Detecting Location...</div>
+
+    <input type="text" id="hallTicket" placeholder="Hall Ticket Number">
+    <button onclick="checkHallTicket()">Submit</button>
+
+    <div id="message" class="message"></div>
+  </div>
+
+  <div id="closedMsg" class="closed" style="display:none;">
+    ⛔ Attendance Closed<br>
+    Allowed Time: 10:00 AM - 2:00 PM
+  </div>
+
+  <script>
+    const validTickets = ["240440284681001","240440284681002","240440284681003","240440284681004","240440284681005","240440284681006","240440284681007","240440284681008","240440284681009","240440284681010","240440284681031"]
+
+    function updateDateTime() {
+      const now = new Date();
+      const date = now.toLocaleDateString();
+      const time = now.toLocaleTimeString();
+      document.getElementById("dateTime").textContent = `📅 Date: ${date} | ⏰ Time: ${time}`;
+
+      const hour = now.getHours();
+      const box = document.getElementById("attendanceBox");
+      const closed = document.getElementById("closedMsg");
+
+      if(hour < 10 || hour >= 12.40){
+        box.style.display = "none";
+        closed.style.display = "block";
+      } else {
+        box.style.display = "block";
+        closed.style.display = "none";
+      }
+    }
+
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+
+    function getLocation() {
+      const loc = document.getElementById("location");
+      if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(
+          (position)=>{
+            const lat = position.coords.latitude.toFixed(5);
+            const lon = position.coords.longitude.toFixed(5);
+            loc.textContent = `📍 Location: Lat ${lat}, Lon ${lon}`;
+          },
+          ()=>{
+            loc.textContent = "📍 Location: Unable to detect";
+          }
+        );
+      } else {
+        loc.textContent = "📍 Location: Not supported";
+      }
+    }
+    getLocation();
+
+    function checkHallTicket() {
+      const ticket = document.getElementById("hallTicket").value.trim();
+      const msg = document.getElementById("message");
+
+      if(validTickets.includes(ticket)){
+        msg.textContent = "✅ Hall Ticket Valid!";
+        msg.className = "message success";
+      } else {
+        msg.textContent = "❌ Invalid Hall Ticket!";
+        msg.className = "message error";
+      }
+
+      document.getElementById("hallTicket").value = "";
+      getLocation(); 
+    }
+  </script>
+
+</body>
+</html>
