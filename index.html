@@ -2,113 +2,125 @@
 <html>
 <head>
   <title>NG College Login</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body{
-      background-color: #ffff;
-      padding:20px;
+      margin:0;
+      font-family: Arial;
+      background-color: #f2f2f2;
       display:flex;
-      justify-content: center;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
     }
-    a {
-      color:black;
-      padding:20px;
-      border-radius:20px;
-    }
-    h1{
-      padding :20px;
-      border-radius:10px;
-      background-color:blue;
-      text-align: center;
-      color:white;
-      border:solid black;
-    }
+
     form{
-      color:black;
-      background-color : white;
-      border:solid black;
+      background:white;
+      border:2px solid black;
+      border-radius:10px;
+      padding:30px;
+      width:90%;
+      max-width:400px;
       text-align:center;
-      padding: 300px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.2);
     }
-    h2{
-      color:black;
-      padding:20px;
-    }
-    button{
-      padding:20px;
-      width:50%;
+
+    h1{
       background-color:blue;
-      border-radius: 20px;
       color:white;
+      padding:10px;
+      border-radius:8px;
+      font-size:22px;
     }
+
+    h2{
+      margin:15px 0;
+    }
+
     input{
-      justify-content:space-around;
+      width:90%;
+      padding:10px;
+      margin:10px 0;
+      border:1px solid #ccc;
+      border-radius:5px;
+    }
+
+    button{
+      width:95%;
+      padding:12px;
+      background-color:blue;
+      color:white;
+      border:none;
+      border-radius:10px;
+      font-size:16px;
+      margin-top:10px;
+      cursor:pointer;
+    }
+
+    button:hover{
+      background-color:darkblue;
+    }
+
+    @media (max-width: 480px){
+      form{
+        padding:20px;
+      }
+
+      h1{
+        font-size:18px;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <form>
     <h1>NG College</h1>
     <h2>LOGIN</h2>
-    
+
     <h3>Name</h3>
     <input type="text" id="username" required>
-    
+
     <h3>Hallticket</h3>
     <input type="text" id="hallticket" required>
-    
-    <br><br>
+
     <button>Login</button>
+
+    <div id="error" style="color:red;margin-top:10px;font-weight:bold;"></div>
   </form>
 
   <script>
-    // list of valid students (name + hallticket)
     var students = [
-     { name: "yelender", hallticket: "240440284681002" },
-      { name: "Uthamkiran", hallticket: "240440284681086", },
-       
+      { name: "yelender", hallticket: "240440284681002" },
+      { name: "Uthamkiran", hallticket: "240440284681086" },
       { name: "saibalji", hallticket: "240440284681031" },
       { name: "yogender", hallticket: "240440284681099" },
       { name: "k.himeshwar reddy", hallticket: "240440284681074" },
-      { name: "AMAROJU SHIVA KUMAR", hallticket: "240440284681004" },
-      { name: "", hallticket: "13579" },
-      { name: "Anjali", hallticket: "24680" },
-      { name: "Sneha", hallticket: "90807" },
-      
-      // 👉 You can add up to 100 here same format
+      { name: "AMAROJU SHIVA KUMAR", hallticket: "240440284681004" }
     ];
 
-    var loginBtn = document.querySelector("button");
-    var errorMessage = document.createElement("div");
-    errorMessage.style.color = "red";
-    errorMessage.style.marginTop = "10px";
-    errorMessage.style.fontWeight = "bold";
-    loginBtn.parentElement.appendChild(errorMessage);
-
-    // when user clicks login
-    loginBtn.addEventListener("click", function(event){
+    document.querySelector("button").addEventListener("click", function(event){
       event.preventDefault();
 
-      var nameInput = document.getElementById("username").value.trim();
-      var hallticketInput = document.getElementById("hallticket").value.trim();
+      var name = document.getElementById("username").value.trim();
+      var hall = document.getElementById("hallticket").value.trim();
+      var error = document.getElementById("error");
 
-      // check if any student matches
-      var found = false;
-      for(var i = 0; i < students.length; i++){
-        if(students[i].name.toLowerCase() === nameInput.toLowerCase() && students[i].hallticket === hallticketInput){
-          found = true;
-          break;
-        }
-      }
+      var found = students.some(s =>
+        s.name.toLowerCase() === name.toLowerCase() &&
+        s.hallticket === hall
+      );
 
       if(found){
         window.location.href = "dashboard.html";
       } else {
-        errorMessage.innerText = "Name or Hallticket is incorrect!";
+        error.innerText = "Name or Hallticket is incorrect!";
       }
     });
   </script>
 
 </body>
 </html>
-
