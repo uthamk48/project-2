@@ -1,92 +1,118 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <title>NG College</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{
+*{
     margin:0;
     padding:0;
+    box-sizing:border-box;
     font-family: Arial, sans-serif;
-    background-color:#ffffff;
+}
+
+body{
+    background:#f4f6f9;
 }
 
 /* NAVBAR */
 .navbar{
-    background-color:#232F3E;
-    padding:10px 15px;
+    position:sticky;
+    top:0;
+    background:#232F3E;
     color:white;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    padding:12px 18px;
     flex-wrap:wrap;
 }
 
 /* LOGO */
 .logo{
-    background-color:#FF9900;
+    background:#FF9900;
     color:black;
     font-weight:bold;
-    padding:10px 15px;
-    border-radius:5px;
+    padding:8px 14px;
+    border-radius:6px;
 }
 
 /* MENU */
-.item{
+.menu{
     display:flex;
     gap:10px;
-    list-style:none;
-    padding:0;
-    margin:10px 0;
     flex-wrap:wrap;
-    justify-content:center;
+    align-items:center;
 }
 
-/* BUTTONS */
-button{
-    padding:10px;
+/* BUTTON STYLE */
+.menu a, .menu button{
+    text-decoration:none;
+}
+
+.menu button{
+    background:#FF9900;
     border:none;
-    border-radius:5px;
+    padding:10px 14px;
+    border-radius:6px;
     cursor:pointer;
-    background-color:#FF9900;
-    color:white;
-    box-shadow:0 4px 6px rgba(0,0,0,0.3);
     font-size:14px;
+    transition:0.3s;
+    color:white;
 }
 
-/* CONTENT (EMPTY SAFE AREA) */
-.content{
-    text-align:center;
-    margin-top:30px;
-    padding:10px;
-    min-height:100px;
+.menu button:hover{
+    background:#e68a00;
+    transform:scale(1.05);
 }
 
 /* DATE TIME */
 #datetime{
     font-size:14px;
-    color:white;
+    opacity:0.9;
 }
 
-/* 📱 MOBILE RESPONSIVE */
-@media (max-width: 768px){
+/* CONTENT */
+.content{
+    padding:20px;
+    text-align:center;
+}
 
-    .navbar{
-        flex-direction:column;
-        align-items:flex-start;
+/* HAMBURGER */
+.hamburger{
+    display:none;
+    font-size:24px;
+    cursor:pointer;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+
+    .hamburger{
+        display:block;
     }
 
-    .item{
-        flex-direction:column;
+    .menu{
+        display:none;
         width:100%;
+        flex-direction:column;
+        margin-top:10px;
     }
 
-    button{
+    .menu.active{
+        display:flex;
+    }
+
+    .menu button{
         width:100%;
-        font-size:16px;
+        text-align:left;
+    }
+
+    #datetime{
+        width:100%;
+        margin-top:10px;
     }
 }
 </style>
@@ -100,21 +126,24 @@ button{
 
     <div class="logo">USB</div>
 
-    <ul class="item">
-        <a href="extenial.html"><button>About us</button></a>
-        <button>AI(Assistant)</button>    
-        <button>result</button>
-        <a href="news.html"><button>news update</button></a>
-        <a href="attdence.html"><button>Attendance</button></a>
-       
-    </ul>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
 
-    <div id="datetime"></div>
+    <div class="menu" id="menu">
+
+        <a href="extenial.html"><button>About Us</button></a>
+        <button>AI Assistant</button>
+        <button>Result</button>
+        <a href="news.html"><button>News Update</button></a>
+        <a href="attdence.html"><button>Attendance</button></a>
+
+        <div id="datetime"></div>
+    </div>
 
 </div>
 
-<!-- EMPTY CONTENT AREA -->
+<!-- CONTENT -->
 <div class="content">
+    <h2>Welcome to NG College Portal</h2>
 </div>
 
 <script>
@@ -125,6 +154,10 @@ function updateDateTime(){
 }
 setInterval(updateDateTime, 1000);
 updateDateTime();
+
+function toggleMenu(){
+    document.getElementById("menu").classList.toggle("active");
+}
 </script>
 
 </body>
