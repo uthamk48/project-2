@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NG College Attendance Portal</title>
-  <a href="dashboard.html">
-  <button>home</button>
+  
   </a>
   <style>
     body {
@@ -101,6 +100,73 @@
       font-weight: bold;
       margin-top: 100px;
     }
+.navbar{
+    position:sticky;
+    top:0;
+    background:#232F3E;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 18px;
+}
+
+/* LOGO */
+.logo{
+    background:#FF9900;
+    color:black;
+    font-weight:bold;
+    padding:8px 14px;
+    border-radius:6px;
+}
+
+/* DATE TIME */
+#datetime{
+    font-size:14px;
+    opacity:0.9;
+}
+
+/* CONTENT */
+.content{
+    padding:20px;
+    text-align:center;
+    margin-bottom:80px;
+}
+
+.card{
+    background:white;
+    margin:15px 0;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* WHATSAPP STYLE BOTTOM MENU */
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    padding:10px 0;
+    border-top:1px solid #ddd;
+    box-shadow:0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.bottom-nav a{
+    text-decoration:none;
+    color:#333;
+    text-align:center;
+    font-size:12px;
+}
+
+.bottom-nav .icon{
+    display:block;
+    font-size:24px;
+    margin-bottom:3px;
+}
   </style>
 </head>
 <body>
@@ -125,6 +191,29 @@
     ⛔ Attendance Closed<br>
     Allowed Time: 10:00 AM - 2:00 PM
   </div>
+  <div class="bottom-nav">
+
+    <a href="news.html" onclick="showPage('news')">
+        <span class="icon">📰</span>
+        News
+    </a>
+
+    <a href="#" onclick="showPage('ai')">
+        <span class="icon">🤖</span>
+        AI Assistant
+    </a>
+
+    <a href="libary.html">
+        <span class="icon">📚</span>
+        Library
+    </a>
+
+    <a href="attdence.html" onclick="showPage('attendance')">
+        <span class="icon">📅</span>
+        Attendance
+    </a>
+
+</div>
 
   <script>
     const validTickets = ["240440284681001","240440284681002","240440284681003","240440284681004","240440284681005","240440284681006","240440284681007","240440284681008","240440284681009","240440284681010","240440284681031"]
