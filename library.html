@@ -15,6 +15,75 @@ header{background:#0f172a;color:#fff;text-align:center;padding:20px;font-size:30
 .semester{background:#fff;margin:12px 0;padding:15px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
 .semester a{display:inline-block;margin-top:10px;padding:8px 15px;background:#10b981;color:#fff;text-decoration:none;border-radius:6px}
 footer{background:#0f172a;color:#fff;text-align:center;padding:20px;margin-top:40px}
+.navbar{
+    position:sticky;
+    top:0;
+    background:#232F3E;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 18px;
+}
+
+/* LOGO */
+.logo{
+    background:#FF9900;
+    color:black;
+    font-weight:bold;
+    padding:8px 14px;
+    border-radius:6px;
+}
+
+/* DATE TIME */
+#datetime{
+    font-size:14px;
+    opacity:0.9;
+}
+
+/* CONTENT */
+.content{
+    padding:20px;
+    text-align:center;
+    margin-bottom:80px;
+}
+
+.card{
+    background:white;
+    margin:15px 0;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* WHATSAPP STYLE BOTTOM MENU */
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    padding:10px 0;
+    border-top:1px solid #ddd;
+    box-shadow:0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.bottom-nav a{
+    text-decoration:none;
+    color:#333;
+    text-align:center;
+    font-size:12px;
+}
+
+.bottom-nav .icon{
+    display:block;
+    font-size:24px;
+    margin-bottom:3px;
+}
+
+
 </style>
 </head>
 <body>
@@ -32,9 +101,9 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px;margin-top:4
 <h2>2019-20 Batch</h2>
 
 <div class="subject-title">💻 Computer Science</div>
-<div class="semester"><strong>Semester 1</strong><br>Programming in C<br><a href="https://pdftolink.im/files/mpw86vn0q5ci">📖 Open Text Book</a></div>
-<div class="semester"><strong>Semester 2</strong><br>Programming in C++<br><a href="https://pdftolink.im/files/mpv0edohxyzs">📖 Open Text Book</a></div>
-<div class="semester"><strong>Semester 3</strong><br>Data Structures Using C++<br><a href="https://pdftolink.im/files/mpv0gk0rafzb">📖 Open Text Book</a></div>
+<div class="semester"><strong>Semester 1</strong><br>Programming in C<br><a href="https://crimson-cloud-658.linkyhost.com">📖 Open Text Book</a></div>
+<div class="semester"><strong>Semester 2</strong><br>Programming in C++<br><a href="#">📖 Open Text Book</a></div>
+<div class="semester"><strong>Semester 3</strong><br>Data Structures Using C++<br><a href="#">📖 Open Text Book</a></div>
 <div class="semester"><strong>Semester 4</strong><br>Database Management System<br><a href="https://pdftolink.im/files/mpv0i2mw2w0v">📖 Open Text Book</a></div>
 <div class="semester"><strong>Semester 5</strong><br>Java Programming<br><a href="https://pdftolink.im/files/mpv0nd5y8vd4">📖 Open Text Book</a></div>
 <div class="semester"><strong>Semester 6</strong><br>Web Technologies<br><a href="#">📖 Open Text Book</a></div>
@@ -84,6 +153,34 @@ footer{background:#0f172a;color:#fff;text-align:center;padding:20px;margin-top:4
 <div class="semester"><strong>Semester 5</strong><br>Modern Physics<br><a href="#">📖 Open Text Book</a></div>
 <div class="semester"><strong>Semester 6</strong><br>Electronics<br><a href="#">📖 Open Text Book</a></div>
 </div>
+
+
+<!-- WHATSAPP STYLE BOTTOM MENU -->
+
+<div class="bottom-nav">
+
+    <a href="news.html" onclick="showPage('news')">
+        <span class="icon">📰</span>
+        News
+    </a>
+
+    <a href="#" onclick="showPage('ai')">
+        <span class="icon">🤖</span>
+        AI Assistant
+    </a>
+
+    <a href="libary.html">
+        <span class="icon">📚</span>
+        Library
+    </a>
+
+    <a href="attdence.html" onclick="showPage('attendance')">
+        <span class="icon">📅</span>
+        Attendance
+    </a>
+
+</div>
+
 
 <footer>© 2026 Digital Library | Developed by Utham & Team</footer>
 <a href="index - Copy.html"></a>
