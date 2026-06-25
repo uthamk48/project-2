@@ -1,114 +1,413 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        /* Modern System CSS Reset & Variables */
+        :root {
+            --bg-color: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --primary-dark: #1e293b;
+            --accent-orange: #f59e0b;
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
 
-<title>Basic News Update</title>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            -webkit-font-smoothing: antialiased;
+        }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        /* Professional Header Section */
+        .header-container {
+            text-align: center;
+            margin: 40px 20px 24px 20px;
+            max-width: 480px;
+        }
 
-<style>
+        .header-container h1 {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+            margin: 0 0 8px 0;
+            line-height: 1.15;
+        }
+
+        .header-container p {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin: 0;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+        }
+
+        /* Layout Structure Wrapper */
+        .content-wrapper {
+            width: 90%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        /* Professional News Header Banner */
+        .announcements-bar {
+            background-color: var(--primary-dark);
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-md);
+        }
+
+        .bar-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Live Indicator Pulse Animation */
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ef4444;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            animation: pulse 1.6s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        /* HIGHLY OPTIMIZED VERTICAL SCROLL WINDOW */
+        .scroll-window {
+            width: 100%;
+            height: 360px; 
+            overflow: hidden;
+            position: relative;
+            border-radius: 12px;
+            mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+        }
+
+        /* CSS Marquee Animation Group */
+        .scroll-content {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            position: absolute;
+            width: 100%;
+            animation: scrollUp 20s linear infinite;
+        }
+
+        /* Seamless Infinite Translation Loop */
+        @keyframes scrollUp {
+            0% { top: 0; }
+            100% { top: -100%; } /* Perfectly rolls over matching cloned elements */
+        }
+
+        /* Pause loop on hover */
+        .scroll-window:hover .scroll-content {
+            animation-play-state: paused;
+        }
+
+        /* Premium Card Architecture */
+        .news-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        .news-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Premium Minimalist Vertical Border Strip */
+        .card-accent-border {
+            width: 5px;
+            background-color: var(--accent-orange);
+            flex-shrink: 0;
+        }
+
+        /* Card Text Content Configuration */
+        .card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0;
+            letter-spacing: -0.2px;
+        }
+
+        .card-text {
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--text-muted);
+            margin: 0;
+        }
+        content{
+    padding:20px;
+    text-align:center;
+    margin-bottom:80px;
+}
+
+.card{
+    background:white;
+    margin:15px 0;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* WHATSAPP STYLE BOTTOM MENU */
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    padding:10px 0;
+    border-top:1px solid #ddd;
+    box-shadow:0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.bottom-nav a{
+    text-decoration:none;
+    color:#333;
+    text-align:center;
+    font-size:12px;
+}
+
+.bottom-nav .icon{
+    display:block;
+    font-size:24px;
+    margin-bottom:3px;
+}
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  padding: 15px;
-  text-align: center;
-  margin: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
 }
 
 /* HOME BUTTON */
 a button {
-  padding: 15px 25px;
-  background-color: black;
-  color: white;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s;
-  margin: 15px 0;
-  box-shadow: 0 6px 10px rgba(0,0,0,0.5);
-  width: 90%;
-  max-width: 300px;
+    padding: 15px 30px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    margin: 20px auto;
+    display: inline-block;
 }
 
 a button:hover {
-  transform: translateY(-3px);
+    background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
-/* TITLE */
+/* HEADINGS */
+h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #111;
+    margin-top: 10px;
+}
+
 h2 {
-  color: #0078ff;
-  font-size: 24px;
-  margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px;
 }
 
-/* NEWS BOX */
-#news {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  max-width: 600px;
-  margin: 0 auto;
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-/* 📱 MOBILE */
-@media (max-width: 768px){
-
-  h2 {
+h3 {
+    text-align: center;
     font-size: 20px;
-  }
-
-  #news {
-    font-size: 16px;
-    padding: 15px;
-  }
-
-  a button {
-    font-size: 15px;
-    padding: 12px;
-  }
 }
-</style>
 
+/* TEXT */
+p, ul {
+    max-width: 900px;
+    margin: 10px auto;
+    line-height: 1.8;
+    font-size: 18px;
+    padding: 0 15px;
+}
+
+/* LIST */
+ul {
+    list-style-type: disc;
+    padding-left: 40px;
+}
+
+/* FOOTER */
+footer {
+    background-color: #0a3d62;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    border-top: 3px solid #1e90ff;
+}
+body{
+    background:#f4f6f9;
+}
+
+/* NAVBAR */
+    </style>
 </head>
-
 <body>
 
-<!-- HOME -->
-<a href="dashboard.html"><button>Home</button></a>
+    <div class="header-container">
+      
+    </div>
 
-<!-- TITLE -->
-<h2>Latest News</h2>
+    <div class="content-wrapper">
+        
+        <div class="announcements-bar">
+            <div class="bar-title-group">
+                <span>📢 News & Announcements</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; opacity: 0.9;">
+                <span class="live-dot"></span> LIVE FEED
+            </div>
+        </div>
 
-<!-- NEWS BOX -->
-<p id="news">Loading news...</p>
+        <div class="scroll-window">
+            <div class="scroll-content">
+                
+                <div class="news-card">
+                    <div class="card-accent-border"></div>
+                    <div class="card-body">
+                        <h2 class="card-title">COE update</h2>
+                        <p class="card-text">revaluation last date 25-06-2026</p>
+                    </div>
+                </div>
 
-<script>
-let news = [
-"A total of 563 posts were notified and 562 candidates have been provisionally selected.",
-"Telangana PSC releases Group-I final results",
-"MLR Institute of Technology hosts Smart India Hackathon 2025",
-"Facial recognition system improves attendance in Telangana schools",
-"DRDO RCI Paid Internship Recruitment 2025 – 160 Posts",
-"Over 10,000 Overseas Job Openings announced in Gorakhpur Employment event",
-"Emerging High-Paying Jobs in 2025 include AI and automation roles",
-"Accenture is shifting focus toward AI and upskilling workforce",
-"Maharashtra plans Global Competence Centre creating 4 lakh jobs"
-];
+                <div class="news-card">
+                    <div class="card-accent-border"></div>
+                    <div class="card-body">
+                        <h2 class="card-title">intership update</h2>
+                        <p class="card-text">google summer intership 2026 are avalible to appy on google careers 
+                            roles 
+                            1. software enignner
+                            2. AI&ML
+                            3. cloud computing</p>
 
-let i = 0;
+                    <p>insfyos summer intership 2026 are avalible to appy on insfyos careers (infsyos instep)
+                        roles 
+                        1.software enignner
+                        2.AI&ML
+                        3.cbyer security
+                        4.digital transformation
 
-function showNews() {
-  document.getElementById("news").innerText = news[i];
-  i = (i + 1) % news.length;
-}
+                    </p>
+                    </div>
+                </div>
 
-showNews();
-setInterval(showNews, 6000);
-</script>
+                <div class="news-card">
+                    <div class="card-accent-border"></div>
+                    <div class="card-body">
+                        <h2 class="card-title"></h2>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <div class="card-accent-border"></div>
+                    <div class="card-body">
+                        <h2 class="card-title">Semester Examination Notification</h2>
+                        <p class="card-text"></p>.</p>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <div class="card-accent-border"></div>
+                    <div class="card-body">
+                        <h2 class="card-title"></h2>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <div class="card-accent-border"></div>
+                    <div class="card-body">
+                        <h2 class="card-title"></h2>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+
+ <a href="news.html" onclick="showPage('news')">
+        <span class="icon">📰</span>
+        News
+    </a>
+
+    <a href="#" onclick="showPage('ai')">
+        <span class="icon">🤖</span>
+        AI Assistant
+    </a>
+
+    <a href="libary.html">
+        <span class="icon">📚</span>
+        Library
+    </a>
+
+    <a href="attdence.html" onclick="showPage('attendance')">
+        <span class="icon">📅</span>
+        Attendance
+    </a>
+
+</div>
+
 
 </body>
 </html>
